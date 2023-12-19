@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="style_0.css">
+    <link rel='icon' href="favicon.ico">
+</head>
+<body>
+    <section>
+        <div class="Login-box">
+            <form id="loginForm">
+                <h2>Login</h2>
+                <div class="input-box"> <!-- email -->
+                    <span class="icon"><ion-icon name="mail"></ion-icon></span>
+                    <input type="email" required id="email">
+                    <label for="email">Email</label>
+                </div> <!-- password -->
+                <div class="input-box">
+                    <span class="icon"><ion-icon name="lock-closed"></ion-icon></span>
+                    <input type="password" required id="password">
+                    <label for="password">Password</label>
+                </div>
+                <div class="remember-forgot">
+                    <label>
+                        <input type="checkbox"> Remember me     
+                    </label>
+                    <a href="https://www.youtube.com/watch?v=Z3J_MCbwaJ0">Forgot Password?</a>
+                </div>
+                <button type="submit">Login</button>
+                <div class="register-link"><p>Don't have an account?    <a href="#"> Register</a></p></div>
+            </form>
+        </div>
+    </section>
+    
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            var email = document.querySelector('#email').value.trim();
+            var password = document.querySelector('#password').value.trim();
+
+            if (email !== '' && password !== '') {
+                alert('Login successful');
+                // Redirect the user to the next page
+                window.location.href = 'https://www.youtube.com/watch?v=dQw4w9WgXcQ';
+            } else {
+                alert('Please enter both email and password');
+            }
+        });
+    </script>
+</body>
+</html>
