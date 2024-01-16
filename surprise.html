@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!--<link rel="stylesheet" href="style.css">-->
+
+    <style>
+        body {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .container {
+            margin-bottom: 10px;
+        }
+
+        .random-button {
+            margin-top: 10px;
+            
+            justify-content: center;
+            align-items: center;
+            display: flex;
+        }
+        p{
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h3>Hi, Welcome to the secret page!</h3>
+        <h4>Click the button</h4>
+        
+        <button class="random-button" onclick="moveButton()">Click Me!</button>
+        <h1 id="demo" ></h1>
+
+        
+
+    </div>
+
+    <script>
+        
+        var button = document.querySelector('.random-button');
+        button.addEventListener('click', showAlert);
+        
+                     //alert box
+                        function moveButton() {
+                        let text;
+                        let person = prompt("Please enter your name:", "Your Name");
+
+                        if (person == null || person == "") {
+                            text = "User cancelled the prompt.";
+                        } else {
+                            text = "Hi! " + person + "! I MISS YOU!!";
+                            setTimeout(function() {
+                                button = window.location.href = 'https://youtu.be/U-M3N3lBmaQ?t=33';
+                            }, 2000); // Delay of 2000 milliseconds (2 seconds)
+                        }
+                        document.getElementById("demo").innerHTML = text;
+                        }
+    </script>
+</body>
+</html>
