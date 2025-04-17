@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rent Now - Rentopia</title>
+  <link rel="stylesheet" href="home.css">
+  <style>
+    /* General Reset for all elements */
+    body, h2, p, label, input, button, form {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    /* Body Styles */
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #f4f4f9;
+      padding-top: 50px;
+      margin: 0;
+    }
+
+    /* Header Styling */
+    header {
+      background-color: #333;
+      color: white;
+      padding: 15px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+
+    .logo-img {
+      width: 40px;
+      height: 40px;
+      margin-right: 10px;
+    }
+
+    nav a {
+      color: white;
+      margin-left: 20px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1rem;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    /* Container Styling */
+    .container {
+      width: 100%;
+      max-width: 800px;
+      margin: 0 auto;
+      background-color: white;
+      box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+      padding: 30px;
+      border-radius: 8px;
+    }
+
+    /* Header in Container */
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      font-size: 1.8rem;
+      color: #333;
+    }
+
+    /* Form Styling */
+    form {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    label {
+      font-size: 1rem;
+      font-weight: 600;
+      color: #333;
+    }
+
+    input {
+      width: 100%;
+      padding: 12px;
+      font-size: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      margin-top: 8px;
+      background-color: #f9f9f9;
+    }
+
+    input:focus {
+      border-color: #4CAF50;
+      background-color: #fff;
+      outline: none;
+    }
+
+    button {
+      background-color: #4CAF50;
+      color: white;
+      padding: 12px;
+      font-size: 1.1rem;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+
+    /* Footer Styling */
+    footer {
+      background-color: #333;
+      color: white;
+      text-align: center;
+      padding: 10px;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="logo">
+    <img src="logo.jpg" alt="Rentopia Logo" class="logo-img">
+    Rentopia
+  </div>
+  <nav>
+    <a href="home.html">Home</a>
+      <a href="#about">About</a>
+      <a href="myrentals.html">My Rentals</a>
+      <a href="user-profile.html">Profile</a>
+      <a href="#contact">Contact</a>
+      <a href="login.html">Logout</a>
+  </nav>
+</header>
+
+<div class="container">
+  <h2>Confirm Your Rental</h2>
+
+  <!-- Rental Confirmation Form -->
+  <form id="rental-form">
+    <div class="form-group">
+      <label for="renter-name">Name:</label>
+      <input type="text" id="renter-name" name="renter-name" required>
+    </div>
+    <div class="form-group">
+      <label for="renter-email">Email:</label>
+      <input type="email" id="renter-email" name="renter-email" required>
+    </div>
+    <div class="form-group">
+      <label for="rental-duration">Duration (days):</label>
+      <input type="number" id="rental-duration" name="rental-duration" required>
+    </div>
+    <button type="submit">Confirm Rental</button>
+  </form>
+</div>
+
+<footer>
+  &copy; 2025 Rentopia. All rights reserved.
+</footer>
+
+<script>
+    document.getElementById('rental-form').addEventListener('submit', function(event) {
+      event.preventDefault();
+  
+      const renterName = document.getElementById('renter-name').value;
+      const renterEmail = document.getElementById('renter-email').value;
+      const rentalDuration = document.getElementById('rental-duration').value;
+      const rentalDate = new Date().toLocaleDateString();
+  
+      if (!renterName || !renterEmail || !rentalDuration) {
+        alert('Please fill all the fields!');
+        return;
+      }
+  
+      // Create a rental object
+      const newRental = {
+        name: renterName,
+        email: renterEmail,
+        duration: rentalDuration,
+        date: rentalDate,
+        item: "Custom Rental Item"
+      };
+  
+      // Get current rentals from localStorage
+      let rentals = JSON.parse(localStorage.getItem("myRentals")) || [];
+  
+      // Add new rental to list
+      rentals.push(newRental);
+  
+      // Save updated rentals back to localStorage
+      localStorage.setItem("myRentals", JSON.stringify(rentals));
+  
+      alert(`Rental Confirmed!\n\nName: ${renterName}\nEmail: ${renterEmail}\nDuration: ${rentalDuration} days`);
+  
+      // Redirect to myrentals.html
+      window.location.href = "myrentals.html";
+    });
+  </script>
+  
+
+</body>
+</html>

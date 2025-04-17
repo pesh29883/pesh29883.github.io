@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Profile - Rentopia</title>
+  <link rel="stylesheet" href="home.css">
+  <style>
+    .profile-container {
+      max-width: 800px;
+      margin: 30px auto;
+      background: #fff;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    .profile-header {
+      font-size: 1.8rem;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+    .info-group {
+      margin-bottom: 15px;
+    }
+    .info-label {
+      font-weight: bold;
+      color: #333;
+    }
+    .info-value {
+      margin-left: 10px;
+    }
+    /* Styling for the photo upload section */
+    .photo-upload {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 20px;
+    }
+    .upload-button {
+      padding: 10px 20px;
+      background-color: #4CAF50;
+      color: white;
+      font-size: 1.1rem;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .upload-button:hover {
+      background-color: #45a049;
+    }
+    /* Preview image styling */
+    .photo-preview {
+      margin-top: 15px;
+      max-width: 200px;
+      max-height: 200px;
+      object-fit: cover;
+      border-radius: 50%;
+    }
+    /* Styling for ratings and trust section */
+    .ratings-container {
+      margin-top: 30px;
+      text-align: center;
+    }
+    .ratings-title {
+      font-size: 1.4rem;
+      margin-bottom: 10px;
+    }
+    .rating {
+      font-size: 1.2rem;
+      color: #f39c12;
+    }
+    .trust-indicator {
+      margin-top: 15px;
+    }
+    .trust-score {
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+    .trust-bar {
+      width: 100%;
+      height: 20px;
+      background-color: #e0e0e0;
+      border-radius: 10px;
+      margin-top: 10px;
+      position: relative;
+    }
+    .trust-level {
+      height: 100%;
+      background-color: #4CAF50;
+      border-radius: 10px;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="logo">
+    <img src="logo.jpg" class="logo-img" alt="Logo"> Rentopia
+  </div>
+  <nav>
+    <a href="home.html">Home</a>
+    <a href="#about">About</a>
+    <a href="browse.html">Browse Items</a>
+    <a href="myrentals.html">My Rentals</a>
+    <a href="user-profile.html">Profile</a>
+    <a href="#contact">Contact</a>
+    <a href="login.html">Logout</a>
+  </nav>
+</header>
+
+<div class="profile-container">
+  <!-- Profile Photo at the Top -->
+  <div class="profile-header">User Profile</div>
+  <div class="photo-upload">
+    <img id="photo-preview" class="photo-preview" src="" alt="Profile Preview" style="display: none;">
+    <label for="photo-upload-input" class="upload-button" id="upload-button">Upload Profile Photo</label>
+    <input type="file" id="photo-upload-input" style="display: none;" accept="image/*" onchange="previewImage(event)">
+  </div>
+
+  <!-- User Info -->
+  <div class="info-group">
+    <span class="info-label">Name:</span>
+    <span class="info-value">John Doe</span>
+  </div>
+  <div class="info-group">
+    <span class="info-label">Email:</span>
+    <span class="info-value">john@example.com</span>
+  </div>
+  <div class="info-group">
+    <span class="info-label">Total Rentals:</span>
+    <span class="info-value">5</span>
+  </div>
+  <div class="info-group">
+    <span class="info-label">Last Rented Item:</span>
+    <span class="info-value">Mountain Bike</span>
+  </div>
+
+  <!-- Seller Ratings and Trustworthiness Section -->
+  <div class="ratings-container">
+    <div class="ratings-title">Seller Ratings</div>
+    <div class="rating">
+      ★★★★☆
+    </div>
+    <div class="info-group">
+      <span class="info-label">Total Rating Count:</span>
+      <span class="info-value">12</span>
+    </div>
+
+    <div class="trust-indicator">
+      <div class="ratings-title">Trustworthiness</div>
+      <div class="trust-score">Trust Score: 90%</div>
+      <div class="trust-bar">
+        <div class="trust-level" style="width: 90%;"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+      // Handle profile photo loading
+      const storedImage = localStorage.getItem('profilePhoto');
+      const photoPreview = document.getElementById('photo-preview');
+      const uploadButton = document.getElementById('upload-button');
+  
+      if (storedImage) {
+        photoPreview.src = storedImage;
+        photoPreview.style.display = 'block';
+        uploadButton.style.display = 'none';
+      }
+  
+      // Highlight current navigation link
+      const links = document.querySelectorAll('nav a');
+      links.forEach(link => {
+        if (link.href === window.location.href || window.location.pathname.includes(link.getAttribute('href'))) {
+          link.classList.add('active');
+        }
+      });
+    });
+  
+    // Handle photo preview and saving
+    function previewImage(event) {
+      const photoPreview = document.getElementById('photo-preview');
+      const file = event.target.files[0];
+      const uploadButton = document.getElementById('upload-button');
+  
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function (e) {
+          const base64Image = e.target.result;
+          photoPreview.src = base64Image;
+          photoPreview.style.display = 'block';
+          uploadButton.style.display = 'none';
+  
+          // Save image to localStorage
+          localStorage.setItem('profilePhoto', base64Image);
+        };
+        reader.readAsDataURL(file);
+      }
+    }
+  </script>
+  
+  
+
+</body>
+</html>

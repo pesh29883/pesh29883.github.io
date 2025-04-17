@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Owner Dashboard - Rentopia</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <h2>Owner Dashboard</h2>
+  <form id="add-item-form">
+    <input type="text" id="title" placeholder="Item Title" required />
+    <input type="text" id="description" placeholder="Description" required />
+    <input type="text" id="image" placeholder="Image URL" required />
+    <button type="submit">Add Item</button>
+  </form>
+  <p id="message"></p>
+
+  <script>
+    document.getElementById('add-item-form').addEventListener('submit', async function (e) {
+      e.preventDefault();
+      const title = document.getElementById('title').value;
+      const description = document.getElementById('description').value;
+      const image = document.getElementById('image').value;
+
+      const res = await fetch('/items', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ title, description, image })
+      });
+
+      const data = await res.json();
+      document.getElementById('message').textContent = data.message;
+      this.reset();
+    });
+  </script>
+</body>
+</html>
+<!-- Compare this snippet from index.html: -->

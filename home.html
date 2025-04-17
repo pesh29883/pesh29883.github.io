@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Home - Rentopia</title>
+  <link rel="stylesheet" href="home.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="logo">
+      <img src="logo.jpg" alt="Rentopia Logo" class="logo-img">
+      Rentopia
+    </div>
+    <nav>
+      <a href="home.html" class="active">Home</a>
+      <a href="#about">About</a>
+      <a href="index.html">Browse Items</a>
+      <a href="myrentals.html">My Rentals</a>
+      <a href="user-profile.html">Profile</a>
+      <a href="#contact">Contact</a>
+      <a href="login.html">Logout</a>
+    </nav>
+  </header>
+
+  <!-- Main Container -->
+  <div class="container">
+    <h2>Find What You Need</h2>
+
+    <!-- Search Bar -->
+    <div class="search-box">
+      <input 
+        type="text" 
+        id="search-input" 
+        placeholder="Search anything to rent..." 
+        class="search-input"
+      />
+      <button id="search-btn" class="search-btn" type="button">Search</button>
+    </div>
+
+    <!-- Results -->
+    <div id="search-results" class="item-list"></div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    &copy; 2025 Rentopia. All rights reserved.
+  </footer>
+
+  <!-- JavaScript -->
+  <script>
+    const searchBtn = document.getElementById('search-btn');
+    const searchInput = document.getElementById('search-input');
+    const searchResults = document.getElementById('search-results');
+
+    // Load items from localStorage or default
+    let items = [];
+
+    const storedItems = localStorage.getItem("browseItems");
+    if (storedItems) {
+      items = JSON.parse(storedItems);
+    } else {
+      // Default items if localStorage is empty
+      items = [
+        {
+          name: "Mountain Bike",
+          desc: "Great for outdoor trails and weekend rides.",
+          img: "bicycle.webp"
+        },
+        {
+          name: "DSLR Camera",
+          desc: "Perfect for high-quality photography and events.",
+          img: "dslr.avif"
+        },
+        {
+          name: "Camping Tent",
+          desc: "Stay warm and dry while exploring the outdoors.",
+          img: "tent.jpg"
+        },
+        {
+          name: "Electric Scooter",
+          desc: "Convenient for short commutes in the city.",
+          img: "scooter.jpg"
+        },
+        {
+          name: "Car",
+          desc: "Reliable and comfortable for weekend getaways.",
+          img: "car.jpg"
+        }
+      ];
+      localStorage.setItem("browseItems", JSON.stringify(items));
+    }
+
+    // Function to display items
+    function renderItems(filtered) {
+      searchResults.innerHTML = "";
+
+      if (filtered.length === 0) {
+        searchResults.innerHTML = "<p>No results found. Try another search.</p>";
+        return;
+      }
+
+      filtered.forEach(item => {
+        const div = document.createElement("div");
+        div.classList.add("item");
+
+        div.innerHTML = `
+          <a href="product.html?name=${encodeURIComponent(item.name)}&desc=${encodeURIComponent(item.desc)}&img=${encodeURIComponent(item.img)}">
+            <img src="${item.img}" alt="${item.name}">
+            <div class="item-content">
+              <div class="item-title">${item.name}</div>
+              <div class="item-description">${item.desc}</div>
+            </div>
+          </a>
+        `;
+
+        searchResults.appendChild(div);
+      });
+    }
+
+    // Search button functionality
+    searchBtn.addEventListener("click", () => {
+      const query = searchInput.value.toLowerCase().trim();
+      const filtered = items.filter(item =>
+        item.name.toLowerCase().includes(query) ||
+        item.desc.toLowerCase().includes(query)
+      );
+      renderItems(filtered);
+    });
+
+    // Optional: Press Enter to search
+    searchInput.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") searchBtn.click();
+    });
+
+    // Initial load
+    renderItems(items);
+  </script>
+
+</body>
+</html>
