@@ -1,212 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- Firebase SDKs -->
-  <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-auth.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore.js"></script>
-
-  <script>
-    // Your Firebase config
-    const firebaseConfig = {
-      apiKey: "YOUR_API_KEY",
-      authDomain: "your-project-id.firebaseapp.com",
-      projectId: "your-project-id",
-      storageBucket: "your-project-id.appspot.com",
-      messagingSenderId: "xxxxxxx",
-      appId: "your-app-id"
-    };
-
-    // Initialize Firebase
-    firebase.initializeApp(firebaseConfig);
-    const auth = firebase.auth();
-    const db = firebase.firestore();
-  </script>
-
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Rentopia</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login - Rentopia</title>
+  <link rel="stylesheet" href="login.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 </head>
 <body>
-  <header>
-    <div class="logo">
-      <img src="logo.jpg" alt="Rentopia Logo" class="logo-img" /> Rentopia
-    </div>
-    <nav>
-      <a href="home.html">Home</a>
-      <a href="#about">About</a>
-      <a href="index.html"class="active" >Browse Items</a>
-      <a href="myrentals.html">My Rentals</a>
-      <a href="user-profile.html">Profile</a>
-      <a href="#contact">Contact</a>
-      <a href="login.html">Logout</a>
-    </nav>
-  </header>
-
-  <div class="container">
-    <h2>Available Items for Rent</h2>
-    <div class="item-list">
-      <!-- DSLR Camera -->
-<div class="item">
-  <a href="product.html?name=DSLR%20Camera&desc=High%20quality%20camera%20perfect%20for%20events%20and%20travel.&img=dslr.avif&owner=Jane%20Doe">
-    <img src="dslr.avif" alt="Camera">
-    <div class="item-content">
-      <div class="item-title">DSLR Camera</div>
-      <div class="item-description">High quality camera perfect for events and travel.</div>
-    </div>
-  </a>
-</div>
-
-<!-- Tent -->
-<div class="item">
-  <a href="product.html?name=Camping%20Tent&desc=Spacious%20tent%20that%20fits%204%20people%20comfortably.&img=tent.jpg&owner=Mike%20Smith">
-    <img src="tent.jpg" alt="Tent">
-    <div class="item-content">
-      <div class="item-title">Camping Tent</div>
-      <div class="item-description">Spacious tent that fits 4 people comfortably.</div>
-    </div>
-  </a>
-</div>
-
-<!-- Bicycle -->
-<div class="item">
-  <a href="product.html?name=Mountain%20Bike&desc=Durable%20bike%20ideal%20for%20off-road%20adventures.&img=bicycle.webp&owner=Anna%20Lee">
-    <img src="bicycle.webp" alt="Bicycle">
-    <div class="item-content">
-      <div class="item-title">Mountain Bike</div>
-      <div class="item-description">Durable bike ideal for off-road adventures.</div>
-    </div>
-  </a>
-</div>
-
-<!-- Car -->
-<div class="item">
-  <a href="product.html?name=Car&desc=Compact%20car%20available%20for%20city%20or%20long-distance%20travel.&img=car.jpg&owner=Chris%20Evans">
-    <img src="car.jpg" alt="Car">
-    <div class="item-content">
-      <div class="item-title">Car</div>
-      <div class="item-description">Compact car available for city or long-distance travel.</div>
-    </div>
-  </a>
-</div>
-
-<!-- Costume -->
-<div class="item">
-  <a href="product.html?name=Halloween%20Costume&desc=Fun%20and%20spooky%20costumes%20for%20parties%20or%20events.&img=costume.jpg&owner=Linda%20Tran">
-    <img src="costume.jpg" alt="Costume">
-    <div class="item-content">
-      <div class="item-title">Halloween Costume</div>
-      <div class="item-description">Fun and spooky costumes for parties or events.</div>
-    </div>
-  </a>
-</div>
-
-<!-- Chairs -->
-<div class="item">
-  <a href="product.html?name=Event%20Chairs&desc=Stylish%20foldable%20chairs%20perfect%20for%20any%20occasion.&img=eventChair.jpg&owner=Steve%20Nguyen">
-    <img src="eventChair.jpg" alt="Chairs">
-    <div class="item-content">
-      <div class="item-title">Event Chairs</div>
-      <div class="item-description">Stylish foldable chairs perfect for any occasion.</div>
-    </div>
-  </a>
-</div>
-
-<!-- House -->
-<div class="item">
-  <a href="product.html?name=Vacation%20House&desc=Cozy%20vacation%20rental%20with%20all%20the%20home%20comforts.&img=vacationHouse.jpg&owner=Rachel%20Parker">
-    <img src="vacationHouse.jpg" alt="House">
-    <div class="item-content">
-      <div class="item-title">Vacation House</div>
-      <div class="item-description">Cozy vacation rental with all the home comforts.</div>
-    </div>
-  </a>
-</div>
-
-<!-- Projector -->
-<div class="item">
-  <a href="product.html?name=HD%20Projector&desc=Bright%20and%20clear%20projection%20for%20movie%20nights%20or%20presentations.&img=projector.webp&owner=David%20Kim">
-    <img src="projector.webp" alt="Projector">
-    <div class="item-content">
-      <div class="item-title">HD Projector</div>
-      <div class="item-description">Bright and clear projection for movie nights or presentations.</div>
-    </div>
-  </a>
-</div>
-
-<!-- Power Tools -->
-<div class="item">
-  <a href="product.html?name=Power%20Tools%20Set&desc=Everything%20you%20need%20for%20DIY%20projects%20and%20home%20improvement.&img=powertools.jpg&owner=Alex%20Martinez">
-    <img src="powertools.jpg" alt="Tools">
-    <div class="item-content">
-      <div class="item-title">Power Tools Set</div>
-      <div class="item-description">Everything you need for DIY projects and home improvement.</div>
-    </div>
-  </a>
-</div>
-
-    </div>
+  <div class="login-container">
+    <h2>Rentopia Login</h2>
+    <form id="login-form">
+      <input type="text" name="email" placeholder="Email" required />
+      <input type="password" name="password" placeholder="Password" required />
+      <button type="submit">Login</button>
+      <p>Don't have an account? <a href="signup.html">Sign up</a></p>
+    </form>
+    <p id="login-message"></p>
   </div>
 
-  <script>
-    const browseItems = [
-    {
-      name: "Mountain Bike",
-      desc: "Great for outdoor trails and weekend rides.",
-      img: "bicycle.webp"
-    },
-    {
-      name: "DSLR Camera",
-      desc: "Perfect for high-quality photography and events.",
-      img: "dslr.avif"
-    },
-    {
-      name: "Camping Tent",
-      desc: "Stay warm and dry while exploring the outdoors.",
-      img: "tent.jpg"
-    },
-    {
-      name: "Electric Scooter",
-      desc: "Convenient for short commutes in the city.",
-      img: "scooter.jpg"
-    },
-    {
-      name: "Car",
-      desc: "Reliable and comfortable for weekend getaways.",
-      img: "car.jpg"
-    }
-    // Add more items here if needed
-  ];
-
-  // Save to localStorage
-  localStorage.setItem("browseItems", JSON.stringify(browseItems));
-    document.getElementById('login-form').addEventListener('submit', async function (e) {
-      e.preventDefault();
-
-      const username = this.username.value;
-      const password = this.password.value;
-      const message = document.getElementById('login-message');
-
-      try {
-        const userCredential = await firebase.auth().signInWithEmailAndPassword(username, password);
-        message.textContent = "Login successful!";
-        message.style.color = 'green';
-
-        // Optional: redirect to homepage
-        // window.location.href = "dashboard.html";
-
-      } catch (error) {
-        message.textContent = error.message;
-        message.style.color = 'red';
-      }
-    });
-  </script>
-
-  <footer>
-    <p>&copy; 2023 Rentopia. All rights reserved.</p>
-    <p>Follow us on <a href="#">Facebook</a>, <a href="#">Twitter</a>, and <a href="#">Instagram</a>.</p>
-  </footer>
-
+  <script src="login.js"></script>
 </body>
 </html>
