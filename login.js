@@ -15,7 +15,7 @@ loginForm.addEventListener('submit', (e) => {
 
   // Redirect based on email domain
   if (email.endsWith('.seller')) {
-    window.location.href = 'seller.html';
+    window.location.href = 'lessor.html';
   } else {
     window.location.href = 'home.html'; // Normal user page
   }
