@@ -4,128 +4,39 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Seller Profile - Rentopia</title>
-  <link rel="stylesheet" href="home.css">
-  <style>
-    .profile-container {
-      max-width: 800px;
-      margin: 30px auto;
-      background: #fff;
-      padding: 30px;
-      border-radius: 8px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    }
-    .profile-header {
-      font-size: 1.8rem;
-      margin-bottom: 20px;
-      text-align: center;
-    }
-    .info-group {
-      margin-bottom: 15px;
-    }
-    .info-label {
-      font-weight: bold;
-      color: #333;
-    }
-    .info-value {
-      margin-left: 10px;
-    }
-    /* Styling for Ratings and Trust section */
-    .ratings-container {
-      margin-top: 30px;
-      text-align: center;
-    }
-    .ratings-title {
-      font-size: 1.4rem;
-      margin-bottom: 10px;
-    }
-    .rating {
-      font-size: 1.2rem;
-      color: #f39c12;
-    }
-    .trust-indicator {
-      margin-top: 15px;
-    }
-    .trust-score {
-      font-size: 1.5rem;
-      font-weight: bold;
-    }
-    .trust-bar {
-      width: 100%;
-      height: 20px;
-      background-color: #e0e0e0;
-      border-radius: 10px;
-      margin-top: 10px;
-      position: relative;
-    }
-    .trust-level {
-      height: 100%;
-      background-color: #4CAF50;
-      border-radius: 10px;
-    }
-
-    /* Items listed section */
-    .items-list {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-      gap: 20px;
-      margin-top: 30px;
-    }
-    .item {
-      border: 1px solid #ddd;
-      border-radius: 8px;
-      overflow: hidden;
-      text-align: center;
-      padding: 15px;
-    }
-    .item img {
-      width: 100%;
-      height: 150px;
-      object-fit: cover;
-      border-radius: 8px;
-    }
-    .item-title {
-      margin-top: 10px;
-      font-weight: bold;
-    }
-    .item-description {
-      color: #555;
-      margin-top: 5px;
-    }
-    nav a.active {
-      color: #4CAF50;
-      font-weight: bold;
-      border-bottom: 2px solid #4CAF50;
-    }
-    
-    
-  </style>
+  <link rel="stylesheet" href="lessor-dashboard.css">
 </head>
 <body>
 
 <header>
   <div class="logo">
-    <img src="logo.jpg" class="logo-img" alt="Logo"> Rentopia
+    <img src="logo.jpg" class="logo-img" alt="Logo"> 
+    Rentopia - Lessor
   </div>
   <nav>
-    <a href="home.html">Home</a>
-    <a href="seller-listing.html">list Items</a>
-    <a href="lessor-dashboard.html">Lessor Profile</a>
-    <a href="myrentals.html">My Rentals</a>
-    <a href="login.html">Logout</a>
+    <a href="lessor.html">List Items</a>
+    <a href="lessor-dashboard.html" class="active">Home</a>
+    <a href="my-rented.html">My Rented-Items</a>
+    <a href="index.html">Logout</a>
   </nav>
 </header>
 
 <div class="profile-container">
   <div class="profile-header">Seller Profile</div>
 
+  <!-- Profile Section with Picture -->
+  <div class="profile-picture">
+    <img src="profile.webp" alt="Jane Smith's Profile Picture" class="profile-img">
+  </div>
+
   <!-- Seller Info -->
   <div class="info-group">
     <span class="info-label">Seller Name:</span>
-    <span class="info-value">Jane Smith</span>
+    <span class="info-value">Jhon Smith</span>
   </div>
   <div class="info-group">
     <span class="info-label">Email:</span>
-    <span class="info-value">jane@example.com</span>
+    <span class="info-value">John@example.com</span>
   </div>
   <div class="info-group">
     <span class="info-label">Items Listed:</span>
@@ -156,21 +67,21 @@
   <div class="items-list">
     <!-- Example Item 1 -->
     <div class="item">
-      <img src="item1.jpg" alt="Camera">
+      <img src="dslr.avif" alt="Camera">
       <div class="item-title">DSLR Camera</div>
       <div class="item-description">High quality camera perfect for events and travel.</div>
     </div>
 
     <!-- Example Item 2 -->
     <div class="item">
-      <img src="item2.jpg" alt="Tent">
+      <img src="tent.jpg" alt="Tent">
       <div class="item-title">Camping Tent</div>
       <div class="item-description">Spacious tent for up to 4 people.</div>
     </div>
 
     <!-- Example Item 3 -->
     <div class="item">
-      <img src="item3.jpg" alt="Bike">
+      <img src="bicycle.webp" alt="Bike">
       <div class="item-title">Mountain Bike</div>
       <div class="item-description">Durable bike ideal for off-road adventures.</div>
     </div>
